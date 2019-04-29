@@ -19,22 +19,10 @@ public class PlayerController : MonoBehaviour
 	void Update()
 	{
 
-		//w-s is x axis
-		//q-e is z axis
-		//a-d is y axis
-
 		if (Input.GetKey(KeyCode.W))
 			transform.eulerAngles = transform.eulerAngles + Vector3.right * MoveSpeed * Time.deltaTime;
 		else if (Input.GetKey(KeyCode.S))
 			transform.eulerAngles = transform.eulerAngles + -Vector3.right * MoveSpeed * Time.deltaTime;
-
-		/*
-		if (Input.GetKey(KeyCode.W))
-			transform.Translate(Vector3.forward * MoveSpeed/10 * Time.deltaTime);
-		else if (Input.GetKey(KeyCode.S))
-			transform.Translate(-Vector3.forward * MoveSpeed/10 * Time.deltaTime);
-
-		*/
 
 		if (Input.GetKey(KeyCode.A))
 			transform.eulerAngles = transform.eulerAngles + -Vector3.up * MoveSpeed * Time.deltaTime;

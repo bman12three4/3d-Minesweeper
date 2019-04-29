@@ -7,6 +7,8 @@ public class MineController : MonoBehaviour {
 	public bool isMine = false;
 	public int number = 0;
 
+	public bool invisible = false;
+
 	public int[] loc;
 
 	public GameObject ray;
@@ -50,69 +52,39 @@ public class MineController : MonoBehaviour {
 	}
 
 	public void getNumber(){
-		if (loc [0] > 0 && loc [0] < 10) {
-			if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]-1, loc[1], loc[2]].GetComponent<MineController> ().isMine)
-				number++;
-			if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]+1, loc[1], loc[2]].GetComponent<MineController> ().isMine)
-				number++;
-			if (loc [1] > 0 && loc [1] < 10) {
-				if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]-1, loc[1]-1, loc[2]].GetComponent<MineController> ().isMine)
+
+		if (!invisible){
+			if (loc [0] > 0 && loc [0] < 10) {
+				if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]-1, loc[1], loc[2]].GetComponent<MineController> ().isMine)
 					number++;
-				if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]-1, loc[1]+1, loc[2]].GetComponent<MineController> ().isMine)
+				if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]+1, loc[1], loc[2]].GetComponent<MineController> ().isMine)
 					number++;
-				if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]+1, loc[1]-1, loc[2]].GetComponent<MineController> ().isMine)
-					number++;
-				if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]+1, loc[1]+1, loc[2]].GetComponent<MineController> ().isMine)
-					number++;
-				if (transform.parent.GetComponent<CreateMines> ().mines [loc[0], loc[1]-1, loc[2]].GetComponent<MineController> ().isMine)
-					number++;
-				if (transform.parent.GetComponent<CreateMines> ().mines [loc[0], loc[1]+1, loc[2]].GetComponent<MineController> ().isMine)
-					number++;
-				if (loc [2] > 0 && loc [2] < 10) {
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]-1, loc[1]-1, loc[2]-1].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]-1, loc[1], loc[2]-1].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]-1, loc[1]+1, loc[2]-1].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0], loc[1]-1, loc[2]-1].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0], loc[1], loc[2]-1].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0], loc[1]+1, loc[2]-1].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]+1, loc[1]-1, loc[2]-1].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]+1, loc[1], loc[2]-1].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]+1, loc[1]+1, loc[2]-1].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]-1, loc[1]-1, loc[2]].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]-1, loc[1], loc[2]].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]-1, loc[1]+1, loc[2]].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0], loc[1]-1, loc[2]].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0], loc[1], loc[2]].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0], loc[1]+1, loc[2]].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]+1, loc[1]-1, loc[2]].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]+1, loc[1], loc[2]].GetComponent<MineController> ().isMine)
-						number++;
-					if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]+1, loc[1]+1, loc[2]].GetComponent<MineController> ().isMine)
-						number++;
+
+				if (loc [1] > 0 && loc [1] < 10) {
+					for (int i = -1; i != 1; i++){
+						for (int j = -1; j != 1; j+=2){
+							if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]+i, loc[1]+j, loc[2]].GetComponent<MineController> ().isMine)
+								number++;
+						}
+					}
+
+					if (loc [2] > 0 && loc [2] < 10) {
+						for (int z = -1; z != 1; z+=2){
+							for (int x = -1; x != 1; z++){
+								for (int y = -1; y != 1; y++){
+									if (transform.parent.GetComponent<CreateMines> ().mines [loc[0]+x, loc[1]+y, loc[2]+z].GetComponent<MineController> ().isMine)
+										number++;
+								}
+							}
+						}
+					}
 				}
 			}
+
+			if (number == 0)
+				Destroy (this.gameObject);
+
 		}
-
-		if (number == 0)
-			Destroy (this.gameObject);
-
-
 			
 	}
 }
