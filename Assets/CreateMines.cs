@@ -15,9 +15,8 @@ public class CreateMines : MonoBehaviour {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				for (int k = 0; k < 10; k++) {
-					Debug.Log ("Creating Mine");
 					mines[i,j,k] = Instantiate (mine, new Vector3 (i * 2, j * 2, k * 2), Quaternion.identity);
-					mines [i, j, k].GetComponent<Renderer>().material = number;
+					mines [i, j, k].GetComponent<MineController>().isMine = true;
 				}
 			}
 		}
