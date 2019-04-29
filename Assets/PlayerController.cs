@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-	float MoveSpeed = 30f;
+	float MoveSpeed = 50f;
 	public GameObject ray;
 	public int[] loc;
 
@@ -29,8 +29,7 @@ public class PlayerController : MonoBehaviour
 		else if (Input.GetKey(KeyCode.D))
 			transform.eulerAngles = transform.eulerAngles + Vector3.up * MoveSpeed * Time.deltaTime;
 
-		if (Input.GetKeyDown(KeyCode.F)) {
-			Debug.Log("Key is pressed");
+		if (Input.GetMouseButtonDown(0)) {
 			Instantiate (ray, this.transform.position, this.transform.rotation);
 		}
 

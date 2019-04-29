@@ -8,16 +8,15 @@ public class RayController : MonoBehaviour {
 	void Start () {
 		Debug.Log("Ray created");
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(Vector3.forward * 1f * Time.deltaTime);
-
-		if (Vector3.Distance (transform.position, new Vector3 (0, 0, 0)) > 300)
-			Destroy (this.gameObject);
+		transform.Translate(Vector3.forward * 5f * Time.deltaTime);
 	}
 
-	void OnTriggerEnter(Collider col){
+	void OnTriggerEnter(){
 		Destroy (this.gameObject);
 	}
+
+
 }
