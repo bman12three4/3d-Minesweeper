@@ -6,11 +6,12 @@ public class RayController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log("Ray created");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(Vector3.forward * 50f * Time.deltaTime);
+		transform.Translate(Vector3.forward * 1f * Time.deltaTime);
 
 		if (Vector3.Distance (transform.position, new Vector3 (0, 0, 0)) > 300)
 			Destroy (this.gameObject);

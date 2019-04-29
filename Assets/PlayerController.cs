@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
 		else if (Input.GetKey(KeyCode.D))
 			transform.eulerAngles = transform.eulerAngles + Vector3.up * MoveSpeed * Time.deltaTime;
 
-		if (Input.GetMouseButtonDown (0)) {
+		if (Input.GetKeyDown(KeyCode.F)) {
+			Debug.Log("Key is pressed");
 			Instantiate (ray, this.transform.position, this.transform.rotation);
 		}
 
