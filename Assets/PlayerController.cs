@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
 	float MoveSpeed = 30f;
 	public GameObject ray;
+	public int[] loc;
 
 	// Start is called before the first frame update
 	void Start()
@@ -41,7 +42,6 @@ public class PlayerController : MonoBehaviour
 			transform.eulerAngles = transform.eulerAngles + Vector3.up * MoveSpeed * Time.deltaTime;
 
 		if (Input.GetMouseButtonDown (0)) {
-			Debug.Log ("Sending Ray");
 			Instantiate (ray, this.transform.position, this.transform.rotation);
 		}
 
