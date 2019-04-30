@@ -21,7 +21,7 @@ public class CreateMines : MonoBehaviour {
 			}
 		}
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 500; i++) {
 			int[] coords = rand ();
 			bool cont = false;
 			while (!cont) {

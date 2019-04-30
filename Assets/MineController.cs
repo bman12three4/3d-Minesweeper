@@ -55,6 +55,8 @@ public class MineController : MonoBehaviour
 			
 			checkd = true;
 
+
+
 			try {
 				if (!transform.parent.GetComponent<CreateMines> ().mines [loc [0] + 1, loc [1], loc [2]].GetComponent<MineController> ().checkd)
 				if (transform.parent.GetComponent<CreateMines> ().mines [loc [0] + 1, loc [1], loc [2]].GetComponent<MineController> ().check ())
@@ -63,6 +65,7 @@ public class MineController : MonoBehaviour
 				Debug.Log ("error");
 			}
 
+
 			try {
 				if (!transform.parent.GetComponent<CreateMines> ().mines [loc [0] - 1, loc [1], loc [2]].GetComponent<MineController> ().checkd)
 				if (transform.parent.GetComponent<CreateMines> ().mines [loc [0] - 1, loc [1], loc [2]].GetComponent<MineController> ().check ())
@@ -70,8 +73,46 @@ public class MineController : MonoBehaviour
 			} catch {
 				Debug.Log ("error");
 			}
-			
 
+
+
+
+			try {
+				if (!transform.parent.GetComponent<CreateMines> ().mines [loc [0], loc [1]+1, loc [2]].GetComponent<MineController> ().checkd)
+				if (transform.parent.GetComponent<CreateMines> ().mines [loc [0] , loc [1]+1, loc [2]].GetComponent<MineController> ().check ())
+					number++;
+			} catch {
+				Debug.Log ("error");
+			}
+
+			try {
+				if (!transform.parent.GetComponent<CreateMines> ().mines [loc [0], loc [1]-1, loc [2]].GetComponent<MineController> ().checkd)
+				if (transform.parent.GetComponent<CreateMines> ().mines [loc [0], loc [1]-1, loc [2]].GetComponent<MineController> ().check ())
+					number++;
+			} catch {
+				Debug.Log ("error");
+			}
+
+
+
+			try {
+				if (!transform.parent.GetComponent<CreateMines> ().mines [loc [0], loc [1], loc [2]+1].GetComponent<MineController> ().checkd)
+				if (transform.parent.GetComponent<CreateMines> ().mines [loc [0] , loc [1], loc [2]+1].GetComponent<MineController> ().check ())
+					number++;
+			} catch {
+				Debug.Log ("error");
+			}
+
+
+
+			try {
+				if (!transform.parent.GetComponent<CreateMines> ().mines [loc [0], loc [1], loc [2]-1].GetComponent<MineController> ().checkd)
+				if (transform.parent.GetComponent<CreateMines> ().mines [loc [0], loc [1], loc [2]-1].GetComponent<MineController> ().check ())
+					number++;
+			} catch {
+				Debug.Log ("error");
+			}
+			
 
 
 			if (isMine) {
