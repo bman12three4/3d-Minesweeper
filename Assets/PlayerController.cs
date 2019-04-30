@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-	float MoveSpeed = 50f;
+	public float MoveSpeed = 75f;
 	public GameObject ray;
+	public GameObject flag;
 	public int[] loc;
 
 	// Start is called before the first frame update
@@ -32,6 +33,9 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetMouseButtonDown(0)) {
 			Instantiate (ray, this.transform.position, this.transform.rotation);
 		}
+
+		if (Input.GetKey(KeyCode.F))
+			Instantiate (flag, this.transform.position, this.transform.rotation);
 
 		transform.Translate(Vector3.forward * Input.mouseScrollDelta.y * MoveSpeed * Time.deltaTime);
 

@@ -7,6 +7,8 @@ public class CreateMines : MonoBehaviour {
 	public GameObject mine;
 	public GameObject[,,] mines = new GameObject[10,10,10];
 
+	public int numMines = 100;
+
 	// Use this for initialization
 	void Start () {
 
@@ -21,7 +23,7 @@ public class CreateMines : MonoBehaviour {
 			}
 		}
 
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < numMines; i++) {
 			int[] coords = rand ();
 			bool cont = false;
 			while (!cont) {
