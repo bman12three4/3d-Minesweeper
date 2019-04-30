@@ -47,7 +47,7 @@ public class MineController : MonoBehaviour
             if (isMine)
             {
                 this.GetComponent<Renderer>().material = Resources.Load<Material>("numbers/Materials/mine");
-				Application.quit();
+				Application.Quit();
             }
             else
             {
