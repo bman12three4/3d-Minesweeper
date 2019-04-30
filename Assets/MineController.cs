@@ -6,14 +6,14 @@ using UnityEngine;
 public class MineController : MonoBehaviour
 {
 
-	public Material blank;
+    public Material blank;
     public bool isMine = false;
     public int number = 0;
 
     public bool invisible = false;
     public bool checkd = false;
 
-	public bool flagged = false;
+    public bool flagged = false;
 
     public int[] loc;
 
@@ -44,27 +44,35 @@ public class MineController : MonoBehaviour
         if (col.gameObject.name == "ray(Clone)")
         {
 
-            if (isMine)
+            if (!flagged)
             {
-                this.GetComponent<Renderer>().material = Resources.Load<Material>("numbers/Materials/mine");
-				Application.Quit();
+                if (isMine)
+                {
+                    this.GetComponent<Renderer>().material = Resources.Load<Material>("numbers/Materials/mine");
+                    Application.Quit();
+                }
+                else
+                {
+                    getNumber();
+                }
+            }
+
+        }
+        else if (col.gameObject.name == "flagray(Clone)")
+        {
+            if (!flagged)
+            {
+                checkd = true;
+                flagged = true;
+                this.GetComponent<Renderer>().material = Resources.Load<Material>("numbers/Materials/flag");
             }
             else
             {
-                getNumber();
+                checkd = false;
+                flagged = false;
+                this.GetComponent<Renderer>().material = blank;
             }
-
-        } else if (col.gameObject.name == "flagray(Clone)"){
-			if (!flagged){
-				checkd = true;
-				flagged = true;
-				this.GetComponent<Renderer>().material = Resources.Load<Material>("numbers/Materials/flag");
-			} else {
-				checkd = false;
-				flagged = false;
-				this.GetComponent<Renderer>().material = blank;
-			}
-		}
+        }
 
     }
 
