@@ -19,6 +19,7 @@ public class CreateMines : MonoBehaviour {
 					mines [i, j, k].transform.parent = this.transform;
 					int[] loc = { i, j, k };
 					mines [i, j, k].GetComponent<MineController> ().loc = loc;
+					//mines [i, j, k].GetComponent<MineController> ().checkd = true;
 				}
 			}
 		}
