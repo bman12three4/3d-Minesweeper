@@ -28,7 +28,7 @@ public class MineController : MonoBehaviour
     {
 
 		if (isMine){
-			updateMaterial();
+			//updateMaterial();
 		}
 
         //number = getNumber ();
