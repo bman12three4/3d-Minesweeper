@@ -27,9 +27,10 @@ public class MineController : MonoBehaviour
     void Update()
     {
 
-		if (isMine){
-			//updateMaterial();
-		}
+        if (isMine)
+        {
+            //updateMaterial();
+        }
 
         //number = getNumber ();
         if (number == 0)
@@ -68,7 +69,7 @@ public class MineController : MonoBehaviour
         {
             if (!flagged)
             {
-                checkd = true;
+                checkd = false;
                 flagged = true;
                 this.GetComponent<Renderer>().material = Resources.Load<Material>("numbers/Materials/flag");
             }
@@ -97,6 +98,8 @@ public class MineController : MonoBehaviour
 
 		*/
 
+        number = 0;
+
         if (!checkd)
         {
 
@@ -113,13 +116,12 @@ public class MineController : MonoBehaviour
                             try
                             {
                                 if (!transform.parent.GetComponent<CreateMines>().mines[loc[0] + i, loc[1] + j, loc[2] + k].GetComponent<MineController>().checkd)
-                                {
                                     if (transform.parent.GetComponent<CreateMines>().mines[loc[0] + i, loc[1] + j, loc[2] + k].GetComponent<MineController>().check())
                                     {
                                         number++;
                                         Debug.Log("Adding mine...");
                                     }
-                                }
+
                             }
                             catch
                             {
@@ -144,7 +146,7 @@ public class MineController : MonoBehaviour
                                 {
                                     if (!transform.parent.GetComponent<CreateMines>().mines[loc[0] + i, loc[1] + j, loc[2] + k].GetComponent<MineController>().checkd)
                                     {
-                                        transform.parent.GetComponent<CreateMines>().mines[loc[0] + i, loc[1] + j, loc[2] + k].GetComponent<MineController>().getNumberButNotRecursive();
+                                        transform.parent.GetComponent<CreateMines>().mines[loc[0] + i, loc[1] + j, loc[2] + k].GetComponent<MineController>().getNumber();
                                     }
                                 }
                                 catch
@@ -157,6 +159,7 @@ public class MineController : MonoBehaviour
                 }
             }
         }
+        updateMaterial();
     }
 
     void updateMaterial()
@@ -198,36 +201,37 @@ public class MineController : MonoBehaviour
         return isMine;
     }
 
-	public void getNumberButNotRecursive(){
-		checkd = true;
-		for (int i = -1; i <= 1; i++)
+    public void getNumberButNotRecursive()
+    {
+        number = 0;
+        checkd = true;
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
             {
-                for (int j = -1; j <= 1; j++)
+                for (int k = -1; k <= 1; k++)
                 {
-                    for (int k = -1; k <= 1; k++)
+                    if (!(i == 0 && j == 0 && k == 0))
                     {
-                        if (!(i == 0 && j == 0 && k == 0))
+                        try
                         {
-                            try
-                            {
-                                if (!transform.parent.GetComponent<CreateMines>().mines[loc[0] + i, loc[1] + j, loc[2] + k].GetComponent<MineController>().checkd)
+                            if (!transform.parent.GetComponent<CreateMines>().mines[loc[0] + i, loc[1] + j, loc[2] + k].GetComponent<MineController>().checkd)
+                                if (transform.parent.GetComponent<CreateMines>().mines[loc[0] + i, loc[1] + j, loc[2] + k].GetComponent<MineController>().check())
                                 {
-                                    if (transform.parent.GetComponent<CreateMines>().mines[loc[0] + i, loc[1] + j, loc[2] + k].GetComponent<MineController>().check())
-                                    {
-                                        number++;
-                                        Debug.Log("Adding mine...");
-                                    }
+                                    number++;
+                                    Debug.Log("Adding mine...");
                                 }
-                            }
-                            catch
-                            {
-                                //Debug.Log("error");
-                            }
+
+                        }
+                        catch
+                        {
+                            //Debug.Log("error");
                         }
                     }
                 }
             }
-			updateMaterial();
-	}
+        }
+        updateMaterial();
+    }
 
 }
